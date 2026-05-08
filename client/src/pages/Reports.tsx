@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Download, Filter } from "lucide-react";
 import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
@@ -36,27 +35,34 @@ export default function ReportsPage() {
   const [consultant, setConsultant] = useState("all");
 
   return (
-    <div className="space-y-6">
+    <div className="w-full space-y-4 sm:space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Relatórios</h1>
-          <p className="text-gray-600 mt-2">Análise de desempenho e métricas operacionais</p>
+      <div className="space-y-4 sm:space-y-0 sm:flex sm:items-center sm:justify-between">
+        <div className="space-y-1">
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Relatórios</h1>
+          <p className="text-sm sm:text-base text-muted-foreground">
+            Análise de desempenho e métricas operacionais
+          </p>
         </div>
-        <Button variant="outline" className="gap-2">
+        <Button
+          variant="outline"
+          className="w-full sm:w-auto gap-2 h-10 sm:h-9"
+          size="sm"
+        >
           <Download className="w-4 h-4" />
-          Exportar Dados
+          <span className="hidden sm:inline">Exportar Dados</span>
+          <span className="sm:hidden">Exportar</span>
         </Button>
       </div>
 
       {/* Filters */}
-      <Card>
-        <CardContent className="pt-6">
-          <div className="grid grid-cols-3 gap-4">
-            <div>
-              <label className="text-sm font-medium">Período</label>
+      <Card className="border-border/50">
+        <CardContent className="pt-4 sm:pt-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+            <div className="space-y-2">
+              <label className="text-xs sm:text-sm font-medium">Período</label>
               <Select value={period} onValueChange={setPeriod}>
-                <SelectTrigger>
+                <SelectTrigger className="h-10 sm:h-9 text-sm">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -68,10 +74,10 @@ export default function ReportsPage() {
               </Select>
             </div>
 
-            <div>
-              <label className="text-sm font-medium">Banco</label>
+            <div className="space-y-2">
+              <label className="text-xs sm:text-sm font-medium">Banco</label>
               <Select value={bank} onValueChange={setBank}>
-                <SelectTrigger>
+                <SelectTrigger className="h-10 sm:h-9 text-sm">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -84,10 +90,10 @@ export default function ReportsPage() {
               </Select>
             </div>
 
-            <div>
-              <label className="text-sm font-medium">Consultor</label>
+            <div className="space-y-2">
+              <label className="text-xs sm:text-sm font-medium">Consultor</label>
               <Select value={consultant} onValueChange={setConsultant}>
-                <SelectTrigger>
+                <SelectTrigger className="h-10 sm:h-9 text-sm">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -103,51 +109,75 @@ export default function ReportsPage() {
       </Card>
 
       {/* Revenue Chart */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Receita e Propostas</CardTitle>
-          <CardDescription>Tendência de receita e volume de propostas</CardDescription>
+      <Card className="border-border/50 overflow-hidden">
+        <CardHeader className="pb-3 sm:pb-4">
+          <CardTitle className="text-base sm:text-lg">Receita e Propostas</CardTitle>
+          <CardDescription className="text-xs sm:text-sm">Tendência de receita e volume de propostas</CardDescription>
         </CardHeader>
-        <CardContent>
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={reportData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="period" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Line type="monotone" dataKey="revenue" stroke="#dc2626" strokeWidth={2} />
-              <Line type="monotone" dataKey="proposals" stroke="#000" strokeWidth={2} />
-            </LineChart>
-          </ResponsiveContainer>
+        <CardContent className="pb-2 sm:pb-4">
+          <div className="w-full h-64 sm:h-80">
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart
+                data={reportData}
+                margin={{ top: 5, right: 10, left: -20, bottom: 5 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+                <XAxis dataKey="period" tick={{ fontSize: 12 }} />
+                <YAxis tick={{ fontSize: 12 }} />
+                <Tooltip contentStyle={{ fontSize: 12 }} />
+                <Legend wrapperStyle={{ fontSize: 12 }} />
+                <Line
+                  type="monotone"
+                  dataKey="revenue"
+                  stroke="#dc2626"
+                  strokeWidth={2}
+                  dot={{ r: 4 }}
+                  name="Receita (R$)"
+                />
+                <Line
+                  type="monotone"
+                  dataKey="proposals"
+                  stroke="#000000"
+                  strokeWidth={2}
+                  dot={{ r: 4 }}
+                  name="Propostas"
+                />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
         </CardContent>
       </Card>
 
       {/* Consultant Performance */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Performance de Consultores</CardTitle>
-          <CardDescription>Ranking de consultores por conversão</CardDescription>
+      <Card className="border-border/50 overflow-hidden">
+        <CardHeader className="pb-3 sm:pb-4">
+          <CardTitle className="text-base sm:text-lg">Performance de Consultores</CardTitle>
+          <CardDescription className="text-xs sm:text-sm">Ranking de consultores por conversão</CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="p-0">
           <div className="overflow-x-auto">
-            <table className="w-full">
+            <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-black/10">
-                  <th className="text-left py-4 px-4 font-semibold">Consultor</th>
-                  <th className="text-left py-4 px-4 font-semibold">Propostas</th>
-                  <th className="text-left py-4 px-4 font-semibold">Aprovadas</th>
-                  <th className="text-left py-4 px-4 font-semibold">Taxa de Conversão</th>
+                <tr className="border-b border-border/50 bg-muted/30">
+                  <th className="text-left py-3 px-4 font-semibold text-xs">Consultor</th>
+                  <th className="text-center py-3 px-4 font-semibold text-xs">Propostas</th>
+                  <th className="text-center py-3 px-4 font-semibold text-xs">Aprovadas</th>
+                  <th className="text-center py-3 px-4 font-semibold text-xs">Conversão</th>
                 </tr>
               </thead>
               <tbody>
-                {consultantPerformance.map((consultant, i) => (
-                  <tr key={i} className="border-b border-gray-100 hover:bg-gray-50">
-                    <td className="py-4 px-4 font-medium">{consultant.name}</td>
-                    <td className="py-4 px-4">{consultant.proposals}</td>
-                    <td className="py-4 px-4">{consultant.approved}</td>
-                    <td className="py-4 px-4">
-                      <span className="font-semibold text-red-600">{consultant.conversion}</span>
+                {consultantPerformance.map((consultant, idx) => (
+                  <tr
+                    key={idx}
+                    className="border-b border-border/50 hover:bg-muted/50 transition-colors"
+                  >
+                    <td className="py-3 px-4 font-medium text-sm">{consultant.name}</td>
+                    <td className="py-3 px-4 text-center text-sm">{consultant.proposals}</td>
+                    <td className="py-3 px-4 text-center text-sm font-semibold text-red-600">
+                      {consultant.approved}
+                    </td>
+                    <td className="py-3 px-4 text-center text-sm font-semibold">
+                      {consultant.conversion}
                     </td>
                   </tr>
                 ))}
@@ -158,61 +188,42 @@ export default function ReportsPage() {
       </Card>
 
       {/* Bank Performance */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Performance por Banco</CardTitle>
-          <CardDescription>Análise de conversão e tempo médio de aprovação</CardDescription>
+      <Card className="border-border/50 overflow-hidden">
+        <CardHeader className="pb-3 sm:pb-4">
+          <CardTitle className="text-base sm:text-lg">Performance por Banco</CardTitle>
+          <CardDescription className="text-xs sm:text-sm">Análise de conversão e tempo médio de resposta</CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="p-0">
           <div className="overflow-x-auto">
-            <table className="w-full">
+            <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-black/10">
-                  <th className="text-left py-4 px-4 font-semibold">Banco</th>
-                  <th className="text-left py-4 px-4 font-semibold">Propostas</th>
-                  <th className="text-left py-4 px-4 font-semibold">Aprovadas</th>
-                  <th className="text-left py-4 px-4 font-semibold">Taxa de Conversão</th>
-                  <th className="text-left py-4 px-4 font-semibold">Tempo Médio</th>
+                <tr className="border-b border-border/50 bg-muted/30">
+                  <th className="text-left py-3 px-4 font-semibold text-xs">Banco</th>
+                  <th className="text-center py-3 px-4 font-semibold text-xs">Propostas</th>
+                  <th className="text-center py-3 px-4 font-semibold text-xs">Aprovadas</th>
+                  <th className="text-center py-3 px-4 font-semibold text-xs">Conversão</th>
+                  <th className="text-center py-3 px-4 font-semibold text-xs hidden sm:table-cell">Tempo Médio</th>
                 </tr>
               </thead>
               <tbody>
-                {bankPerformance.map((bank, i) => (
-                  <tr key={i} className="border-b border-gray-100 hover:bg-gray-50">
-                    <td className="py-4 px-4 font-medium">{bank.bank}</td>
-                    <td className="py-4 px-4">{bank.proposals}</td>
-                    <td className="py-4 px-4">{bank.approved}</td>
-                    <td className="py-4 px-4">
-                      <span className="font-semibold text-red-600">{bank.conversion}</span>
+                {bankPerformance.map((bank, idx) => (
+                  <tr
+                    key={idx}
+                    className="border-b border-border/50 hover:bg-muted/50 transition-colors"
+                  >
+                    <td className="py-3 px-4 font-medium text-sm">{bank.bank}</td>
+                    <td className="py-3 px-4 text-center text-sm">{bank.proposals}</td>
+                    <td className="py-3 px-4 text-center text-sm font-semibold text-red-600">
+                      {bank.approved}
                     </td>
-                    <td className="py-4 px-4">{bank.avgTime}</td>
+                    <td className="py-3 px-4 text-center text-sm font-semibold">{bank.conversion}</td>
+                    <td className="py-3 px-4 text-center text-sm hidden sm:table-cell text-muted-foreground">
+                      {bank.avgTime}
+                    </td>
                   </tr>
                 ))}
               </tbody>
             </table>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Export Options */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Exportar Relatório</CardTitle>
-          <CardDescription>Escolha o formato de exportação</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="flex gap-3">
-            <Button variant="outline" className="gap-2">
-              <Download className="w-4 h-4" />
-              PDF
-            </Button>
-            <Button variant="outline" className="gap-2">
-              <Download className="w-4 h-4" />
-              Excel
-            </Button>
-            <Button variant="outline" className="gap-2">
-              <Download className="w-4 h-4" />
-              CSV
-            </Button>
           </div>
         </CardContent>
       </Card>

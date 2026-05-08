@@ -1,4 +1,6 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
@@ -180,5 +182,45 @@
       padding-right: 2rem;
       max-width: 1280px; /* Standard content width */
     }
+  }
+
+  /* Touch-friendly button and interactive element sizing */
+  button,
+  [role="button"],
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"],
+  a[role="button"] {
+    min-height: 2.5rem; /* 40px minimum touch target */
+    min-width: 2.5rem; /* 40px minimum touch target */
+  }
+
+  /* Input fields touch-friendly sizing */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  input[type="date"],
+  input[type="time"],
+  textarea,
+  select {
+    min-height: 2.5rem; /* 40px minimum touch target */
+  }
+
+  /* Improved focus states for mobile */
+  button:focus-visible,
+  [role="button"]:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  /* Mobile-optimized link spacing */
+  a {
+    min-height: 2.5rem; /* 40px minimum touch target */
+    display: inline-flex;
+    align-items: center;
   }
 }
