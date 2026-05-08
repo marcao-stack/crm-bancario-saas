@@ -20,7 +20,7 @@
 ## Fase 4: Gestão de Clientes
 - [x] Cadastro completo de clientes (nome, CPF/CNPJ, telefone, email, endereço, etc.)
 - [x] Timeline de interações
-- [ ] Upload de documentos
+- [x] Upload de documentos
 - [x] Filtros avançados e busca
 - [x] Status e tags de clientes
 
@@ -62,11 +62,11 @@
 - [ ] Exportação de auditoria (LGPD)
 
 ## Fase 11: Relatórios
-- [ ] Relatórios financeiros
-- [ ] Performance operacional
-- [ ] Conversão por banco
-- [ ] Ranking de consultores
-- [ ] Filtros por período, banco, consultor
+- [x] Relatórios financeiros
+- [x] Performance operacional
+- [x] Conversão por banco
+- [x] Ranking de consultores
+- [x] Filtros por período, banco, consultor
 - [ ] Exportação em PDF, XLSX, CSV
 
 ## Fase 12: Interface Visual (Swiss Style)
@@ -83,7 +83,14 @@
 - [x] Validação de RBAC
 - [ ] Performance e segurança
 
-## Fase 14: Entrega Final
+## Fase 14: Admin e Configurações
+- [x] Página de Configurações (Admin)
+- [x] Gerenciamento de Usuários
+- [x] Configurações de Segurança
+- [x] Configurações de Notificações
+- [ ] Página de Detalhe do Cliente
+
+## Fase 15: Entrega Final
 - [ ] README detalhado
 - [ ] Documentação de API
 - [ ] Instruções de deployment

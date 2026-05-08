@@ -12,6 +12,9 @@ import ClientsPage from "./pages/Clients";
 import ProposalsPage from "./pages/Proposals";
 import BanksPage from "./pages/Banks";
 import AuditLogsPage from "./pages/AuditLogs";
+import ClientDetail from "./pages/ClientDetail";
+import ReportsPage from "./pages/Reports";
+import SettingsPage from "./pages/Settings";
 import { Loader2 } from "lucide-react";
 
 function Router() {
@@ -42,6 +45,9 @@ function Router() {
         <Route path="/proposals" component={ProposalsPage} />
         <Route path="/banks" component={BanksPage} />
         <Route path="/audit-logs" component={AuditLogsPage} />
+        <Route path="/clients/:id" component={ClientDetail} />
+        <Route path="/reports" component={ReportsPage} />
+        <Route path="/settings" component={SettingsPage} />
         <Route path="/" component={Dashboard} />
         <Route component={NotFound} />
       </Switch>
