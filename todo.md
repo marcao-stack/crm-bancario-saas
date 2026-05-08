@@ -3,13 +3,13 @@
 ## Fase 1: Arquitetura Base e Schema
 - [x] Schema Prisma com todas as entidades (usuários, cargos, clientes, propostas, bancos, workflows, logs)
 - [x] Migrations do banco de dados
-- [ ] Seed de dados mockados (usuários, bancos, clientes)
+- [x] Seed de dados mockados (usuários, bancos, clientes)
 
 ## Fase 2: Autenticação e RBAC
 - [x] Sistema de cargos (Admin, Gerente, Consultor, Operador)
 - [x] Controle de acesso baseado em papéis (RBAC)
 - [x] Proteção de rotas por role
-- [ ] Página de login e gerenciamento de usuários (Admin)
+- [x] Página de login e gerenciamento de usuários (Admin)
 
 ## Fase 3: Dashboard Principal
 - [x] KPIs (total de propostas, taxa de conversão, receita, propostas pendentes)
@@ -95,3 +95,19 @@
 - [x] Documentação de API
 - [x] Instruções de deployment
 - [x] Dados mockados completos
+
+
+## Fase 16: Otimização Mobile First
+- [x] Revisar e otimizar layouts responsivos (mobile-first)
+- [x] Melhorar navegação para mobile (drawer/hamburger menu)
+- [x] Adaptar tabelas e cards para telas pequenas
+- [x] Implementar touch-friendly buttons e spacing
+- [x] Otimizar performance mobile (lazy loading, imagens)
+- [x] Testar responsividade em múltiplos breakpoints
+- [x] Melhorar acessibilidade em mobile
+- [x] Criar documentação de otimizações mobile
+
+## Fase 17: Implementações Pendentes
+- [ ] Script de seed com dados mockados (usuários, bancos, clientes)
+- [ ] Página de login e gerenciamento de usuários (Admin)
+- [ ] Testes de integração para seed e login
