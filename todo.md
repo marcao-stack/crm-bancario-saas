@@ -91,7 +91,7 @@
 - [ ] Página de Detalhe do Cliente
 
 ## Fase 15: Entrega Final
-- [ ] README detalhado
+- [x] README detalhado
 - [ ] Documentação de API
 - [ ] Instruções de deployment
-- [ ] Dados mockados completos
+- [x] Dados mockados completos
